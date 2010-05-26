@@ -107,10 +107,10 @@ $json = json_decode($res, true);
   </tr>
   <tr>
     <td colspan='2'>
-      <center><?php echo $json['totalResults']?>件中 <?php echo $json['startIndex'] + 1 ?>～<?php echo $json['startIndex'] + $json['itemsPerPage'] ?>件目を表示</center>
+      <center><?php echo $json['totalResults']?>件中 <?php echo $json['startIndex'] + 1 ?>～<?php echo $json['startIndex'] +  count($json['entry']) ?>件目を表示</center>
     </td>
   </tr>
-  <?php for ($i=0;$i<$json['itemsPerPage'];$i++):?>
+  <?php for ($i=0;$i< count($json['entry']);$i++):?>
   <tr>
     <td width="25%" valign="top" align="center">
       <img width="60px" height="60px" src=<?php echo $json['entry'][$i]['thumbnailUrl'] ? $json['entry'][$i]['thumbnailUrl'] : BASE_URL.'/images/no_image.gif' ?> alt="" format="jpg">
@@ -128,7 +128,7 @@ $json = json_decode($res, true);
 </tbody>
 </table>
 
-<?php if ($json['itemsPerPage'] < $json['totalResults']): ?>
+<?php if ( count($json['entry']) < $json['totalResults']): ?>
 <center><a href="?url=<?php echo urlencode(APP_URL.'?refid=1&p=1') ?>">もっとみる</a></center>
 <?php endif; ?>
 
@@ -159,10 +159,10 @@ $json = json_decode($res, true);
   </tr>
   <tr>
     <td colspan='2'>
-      <center><?php echo $json['totalResults']?>件中 <?php echo $json['startIndex'] + 1 ?>～<?php echo $json['startIndex'] + $json['itemsPerPage'] ?>件目を表示</center>
+      <center><?php echo $json['totalResults']?>件中 <?php echo $json['startIndex'] + 1 ?>～<?php echo $json['startIndex'] +  count($json['entry']) ?>件目を表示</center>
     </td>
   </tr>
-  <?php for ($i=0;$i<$json['itemsPerPage'];$i++):?>
+  <?php for ($i=0;$i< count($json['entry']);$i++):?>
   <tr>
     <td width="25%" valign="top" align="center">
       <img width="60px" height="60px" src=<?php echo $json['entry'][$i]['thumbnailUrl'] ? $json['entry'][$i]['thumbnailUrl'] : BASE_URL.'/images/no_image.gif' ?> alt="" format="jpg">
