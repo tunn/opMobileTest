@@ -18,8 +18,7 @@ $request = OAuthRequest::from_request(null, null, null);
 $signature_method = new OAuthSignatureMethod_RSA_SHA1_opOpenSocialPlugin();
 if (!$signature_method->check_signature($request, null, null, $request->get_parameter('oauth_signature')))
 {
-  // ちゃんとエラー処理しないとかばかじゃないの
-  var_dump("エラーとか");
+  echo 'Invalid signature';
   exit;
 }
 
@@ -223,9 +222,10 @@ switch ($_GET['result'])
 
 $request->sign_request(new OAuthSignatureMethod_HMAC_SHA1(), $consumer, null);
 $result = do_post($request->get_normalized_http_url(),$params, $request, $data);
-var_dump($result);
 ?>
-
+<center>
+<br><a href="?url=<?php echo urlencode(APP_URL) ?>">マイページに戻る</a><br>
+</center>
 <?php endif; ?>  
 </body>
 </html>
