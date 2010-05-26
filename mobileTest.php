@@ -66,7 +66,7 @@ $json = json_decode($res, true);
 <tbody>
   <tr>
     <td width="50%" valign="top" align="center">
-      <img width="120px" height="120px" src=<?php echo $json['entry']['thumbnailUrl'] ?> alt="" format="jpg">
+      <img width="120px" height="120px" src=<?php echo $json['entry'][$i]['thumbnailUrl'] ? $json['entry'][$i]['thumbnailUrl'] : BASE_URL.'/images/no_image.gif' ?> alt="" format="jpg">
     </td>
     <td valign="top">
       <font color="#999966">性別:</font><br><?php echo $json['entry']['gender'] ?><br>
