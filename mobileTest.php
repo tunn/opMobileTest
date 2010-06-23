@@ -83,6 +83,43 @@ $json = json_decode($res, true);
 </center>
 <br>
 
+<table width="100%">
+<tbody>
+<tr>
+    <td bgcolor="#0d6ddf" align="center" colspan='2'>
+      <font color="#eeeeee">位置情報</font><br>
+    </td>
+</tr>
+<tr>
+    <td align="center">
+      <a href="location:gps?callback=<?php echo urlencode(APP_URL.'?refid=4') ?>">GPS位置情報を収得する（GET）</a>
+    </td>
+</tr>
+<tr>
+    <td align="center">
+        <form action="location:gps" method="post">
+          <input type="hidden" name="callback" value="<?php echo urlencode(APP_URL.'?refid=4') ?>">
+          <input type="submit" value="GPS位置情報を収得する（POST）">
+        </form>
+    </td>
+</tr>
+<tr>
+    <td align="center">
+      <a href="location:cell?callback=<?php echo urlencode(APP_URL.'?refid=4') ?>">簡易位置情報を収得する（GET）</a>
+    </td>
+</tr>
+<tr>
+    <td align="center">
+        <form action="location:cell" method="post">
+          <input type="hidden" name="callback" value="<?php echo urlencode(APP_URL.'?refid=4') ?>">
+          <input type="submit" value="簡易位置情報を収得する（POST）">
+        </form>
+    </td>
+</tr>
+</tbody>
+</table>
+<br>
+
 <?php
 $request = OAuthRequest::from_consumer_and_token(
   $consumer,
@@ -226,7 +263,18 @@ $result = do_post($request->get_normalized_http_url(),$params, $request, $data);
 <center>
 <br><a href="?url=<?php echo urlencode(APP_URL) ?>">マイページに戻る</a><br>
 </center>
-<?php endif; ?>  
+
+<!-- Result page -->
+<?php elseif (4 == $_GET['refid']): ?>
+<?php if (null !== $_GET['datum'] && null !== $_GET['lat'] && null !== $_GET['lon']): ?>
+<?php echo "現在の位置情報は (datum, lat, lon) = (".$_GET['datum'].", ".$_GET['lat'].", ".$_GET['lon'].")" ?>
+<?php else: ?>
+<?php echo "位置情報が収得でない" ?>
+<?php endif; ?>
+<center>
+<br><a href="?url=<?php echo urlencode(APP_URL) ?>">マイページに戻る</a><br>
+</center>
+<?php endif; ?>
 </body>
 </html>
 <?php
