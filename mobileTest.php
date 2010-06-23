@@ -22,10 +22,10 @@ if (!$signature_method->check_signature($request, null, null, $request->get_para
   exit;
 }
 
-define('CONSUMER_KEY', '#CONSUMER_KEY');
-define('CONSUMER_SECRET', '#CONSUMER_SECRET');
-define('BASE_URL', '#BASE_URL');
-define('APP_URL', '#APP_URL');
+define('CONSUMER_KEY', '#CONSUMER_KEY#');
+define('CONSUMER_SECRET', '#CONSUMER_SECRET#');
+define('BASE_URL', '#BASE_URL#');
+define('APP_URL', '#START_URL#');
 
 $consumer = new OAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
 $request = OAuthRequest::from_consumer_and_token(
